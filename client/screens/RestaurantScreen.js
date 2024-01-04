@@ -5,6 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '../theme';
 import BasketIcon from '../components/basketIcon';
+import { StatusBar } from 'expo-status-bar';
 
 export default function RestaurantScreen() {
     const navigation = useNavigation();
@@ -13,6 +14,7 @@ export default function RestaurantScreen() {
     return (
         <>
             <BasketIcon />
+            <StatusBar style="light" />
             <ScrollView>
                 <View>
                     <Image className="w-full h-72" source={params.image} />
