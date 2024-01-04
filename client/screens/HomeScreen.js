@@ -1,12 +1,17 @@
 import { View, Text, TextInput, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '../theme';
 import Categories from '../components/categories';
+import { featured } from '../constants';
+import FeatureRow from '../components/featuredRow';
 
 export default function HomeScreen() {
+    // useEffect(() => {
+    //     console.log(featured);
+    // }, []);
     return (
         <SafeAreaView className="bg-white">
             <StatusBar barStyle="dark-content" />
@@ -37,18 +42,21 @@ export default function HomeScreen() {
 
                 {/* featured */}
                 <View className="mt-5">
-                    {/* {featuredCategories?.map((category) => {
-                        return (
-                            <FeatureRow
-                                key={category._id}
-                                id={category._id}
-                                title={category.name}
-                                resturants={category?.resturants}
-                                description={category.description}
-                                featuredCategory={category._type}
-                            />
-                        );
-                    })} */}
+                    <FeatureRow item={featured} />
+                    {
+                        // featured?.map((category) => {
+                        //     return (
+                        //         <FeatureRow
+                        //             key={category.id}
+                        //             id={category.id}
+                        //             title={category.title}
+                        //             resturants={category?.resturants}
+                        //             description={category.description}
+                        //             featuredCategory={category._type}
+                        //         />
+                        //     );
+                        // })
+                    }
                 </View>
             </ScrollView>
         </SafeAreaView>
