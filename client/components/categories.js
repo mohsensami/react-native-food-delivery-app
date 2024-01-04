@@ -1,17 +1,18 @@
 import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { getCategories } from '../api';
-import { urlFor } from '../sanity';
+// import { getCategories } from '../api';
+// import { urlFor } from '../sanity';
 import { themeColors } from '../theme';
+import { categories } from '../constants';
 
 export default function Categories() {
     const [activeCategory, setActiveCategory] = useState(null);
-    const [categories, setCategories] = useState([]);
+    // const [categories, setCategories] = useState([]);
     useEffect(() => {
-        getCategories().then((data) => {
-            // console.log('got data', data[0].name);
-            setCategories(data);
-        });
+        // getCategories().then((data) => {
+        //     // console.log('got data', data[0].name);
+        //     setCategories(data);
+        // });
     }, []);
 
     return (
@@ -30,16 +31,15 @@ export default function Categories() {
                     let btnClass = isActive ? ' bg-gray-600' : ' bg-gray-200';
                     let textClass = isActive ? ' font-semibold text-gray-800' : ' text-gray-500';
                     return (
-                        <View key={category._id} className="flex justify-center items-center mr-6">
+                        <View key={category.id} className="flex justify-center items-center mr-6">
                             <TouchableOpacity
                                 onPress={() => setActiveCategory(category._id)}
                                 className={'p-1 rounded-full shadow' + btnClass}
                             >
                                 <Image
                                     style={{ width: 45, height: 45 }}
-                                    source={{
-                                        uri: urlFor(category.image).url(),
-                                    }}
+                                    source={category.image}
+                                    // uri: urlFor(category.image).url(),
                                 />
                             </TouchableOpacity>
                             <Text className={'text-sm ' + textClass}>{category.name}</Text>
