@@ -42,21 +42,9 @@ export default function HomeScreen() {
 
                 {/* featured */}
                 <View className="mt-5">
-                    <FeatureRow item={featured} />
-                    {
-                        // featured?.map((category) => {
-                        //     return (
-                        //         <FeatureRow
-                        //             key={category.id}
-                        //             id={category.id}
-                        //             title={category.title}
-                        //             resturants={category?.resturants}
-                        //             description={category.description}
-                        //             featuredCategory={category._type}
-                        //         />
-                        //     );
-                        // })
-                    }
+                    {featured?.restaurants.map((category) => {
+                        return <FeatureRow item={featured} key={category.id} />;
+                    })}
                 </View>
             </ScrollView>
         </SafeAreaView>

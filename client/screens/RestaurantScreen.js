@@ -1,16 +1,24 @@
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import DishRow from '../components/dishRow';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Icon from 'react-native-feather';
 import { themeColors } from '../theme';
 import BasketIcon from '../components/basketIcon';
 import { StatusBar } from 'expo-status-bar';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectResturant, setResturant } from '../slices/resturantSlice';
 
 export default function RestaurantScreen() {
     const navigation = useNavigation();
     const { params } = useRoute();
-
+    let dispatch = useDispatch();
+    useEffect(() => {
+        // if (params && params.id != id) {
+        //     dispatch(emptyBasket());
+        // }
+        dispatch(setResturant({ ...params }));
+    }, []);
     return (
         <>
             <BasketIcon />
@@ -51,16 +59,7 @@ export default function RestaurantScreen() {
                     <Text className="px-4 py-4 text-2xl font-bold">Menu</Text>
                     {/* dishes */}
                     {params.dishes.map((dish) => {
-                        return (
-                            <DishRow
-                                key={dish.id}
-                                id={dish.id}
-                                name={dish.name}
-                                description={dish.description}
-                                price={dish.price}
-                                image={dish.image}
-                            />
-                        );
+                        return <DishRow item={dish} key={dish.id} />;
                     })}
                 </View>
             </ScrollView>
